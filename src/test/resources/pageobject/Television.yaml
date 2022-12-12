@@ -1,5 +1,5 @@
-samsung: //span[text()='Samsung']//parent::a/div/label/input
-sort_by: //span[@id='a-autoid-4-announce']
+samsung: //span[text()='Samsung']//parent::a/div/label/i
+sort_by: //span[@class="a-dropdown-prompt"]
 high_to_low: //a[contains(text(),'High to Low')]
 second_highest_price_item: //div[contains(@class,'s-search-results')]/div[3]
 
