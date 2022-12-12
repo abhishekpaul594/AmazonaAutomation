@@ -33,6 +33,7 @@ public class StepDefinition {
         url = envData.get(environment);
         driver.get(url);
         predef.waitPageLoad();
+        System.out.println("Home page opened");
     }
 
     @Then("^I click on element (.+)$")
@@ -44,17 +45,20 @@ public class StepDefinition {
         elem.click();
         DriverUtil.waitForJqueryJsToLoad();
         predef.waitPageLoad();
+        System.out.println("Clicked on element "+element);
     }
     @Then("^I validate element (.+)$")
     public void validateElement(String element) throws Exception {
         elem = predef.findElement(element);
         if (!elem.isEnabled())
             throw new Exception("Element not found");
+        System.out.println("Validated element "+element);
     }
 
     @And("^I log (.+) list element text in console")
     public void logTextListElement(String element){
         elementList=predef.findElements(element);
+        System.out.println("Logging element text "+element);
         for(int i=0;i< elementList.size();i++)
             System.out.println(elementList.get(i).getText());
     }
@@ -76,6 +80,7 @@ public class StepDefinition {
                     break;
                 }
             }
+            System.out.println("Switched to child window "+n);
         }
         if (flag == 0)
             System.out.println("Child window " + n + " not found");
