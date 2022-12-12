@@ -1,0 +1,2 @@
+about_this_item: //div[@id='featurebullets_feature_div']
+about_item_contents: //div[@id='featurebullets_feature_div']/div/ul/li
