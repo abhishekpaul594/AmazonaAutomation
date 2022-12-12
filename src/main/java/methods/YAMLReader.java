@@ -19,7 +19,7 @@ public class YAMLReader {
         try {
             if (fileName.contains("pageobject"))
                 ymlData = yaml.loadAs(inputStream, Map.class);
-            else if (fileName.contains("environments"))
+            else if (fileName.contains("Environments"))
                 ymlData = yaml.loadAs(inputStream, Map.class);
         } catch (Exception e) {
             e.printStackTrace();

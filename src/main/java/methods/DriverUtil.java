@@ -30,7 +30,7 @@ public class DriverUtil {
     //Choosing appropriate chrome driver
     private static WebDriver chooseDriver() {
         RemoteWebDriver driver = null;
-        System.out.println("======Before drover created======");
+        System.out.println("======Before driver created======");
         ChromeOptions chromeOptions = new ChromeOptions();
         if (configProperties.getProperty(HEADLESS).equalsIgnoreCase("true")) {
             chromeOptions.addArguments("--headless");
