@@ -10,10 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileNotFoundException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class StepDefinition {
     protected static WebDriver driver;
@@ -61,22 +58,26 @@ public class StepDefinition {
         for(int i=0;i< elementList.size();i++)
             System.out.println(elementList.get(i).getText());
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    @And("^I switch to child window (.+)$")
+    public void switchToChildWindow(int n) {
+        int count = 0;
+        int flag = 0;
+        mainWindow = driver.getWindowHandle();
+        Set<String> windows = driver.getWindowHandles();
+        Iterator<String> windowIterator = windows.iterator();
+        windowIterator.next();
+        while (windowIterator.hasNext()) {
+            String childWindow = windowIterator.next();
+            if (!childWindow.equalsIgnoreCase(mainWindow)) {
+                count++;
+                if (count == n) {
+                    driver.switchTo().window(childWindow);
+                    flag = 1;
+                    break;
+                }
+            }
+        }
+        if (flag == 0)
+            System.out.println("Child window " + n + " not found");
+    }
 }
