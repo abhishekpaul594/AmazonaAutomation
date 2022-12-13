@@ -1,4 +1,4 @@
-package methods;
+package commonmethods;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;

@@ -1,11 +1,11 @@
-package methods;
+package commonmethods;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Map;
 import java.util.Properties;
 
-import static methods.Constants.CONFIGPATH;
+import static commonmethods.Constants.CONFIGPATH;
 
 public class GlobalProperties {
     private Map<String, String> configProperties;

@@ -1,4 +1,4 @@
-package methods;
+package commonmethods;
 
 public class Constants {
 

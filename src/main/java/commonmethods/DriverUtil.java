@@ -1,10 +1,9 @@
-package methods;
+package commonmethods;
 
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.Browser;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -12,8 +11,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Collections;
 
-import static methods.Constants.*;
-import static methods.GlobalProperties.getConfigProperties;
+import static commonmethods.Constants.*;
+import static commonmethods.GlobalProperties.getConfigProperties;
 
 public class DriverUtil {
     private static WebDriver driver;

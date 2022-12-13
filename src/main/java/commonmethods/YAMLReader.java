@@ -1,4 +1,4 @@
-package methods;
+package commonmethods;
 
 import org.yaml.snakeyaml.Yaml;
 
