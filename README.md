@@ -14,10 +14,11 @@ Linux environment
 
 
 ########
-Windows environment
+Windows & MacOS environment
 1. Open terminal Switch to root user
-2. Go inside webdrivers/chromedriver_win32 in the root folder
-3. Go back to root folder of the project in the terminal
-4. Execute mvn clean test -Dcucumber.options="src/test/resources/features/AutomationTelevision.feature" -Dcucumber.options="--tags @test" command 
+2. Go back to root folder of the project in the terminal
+3. Execute mvn clean test -Dcucumber.options="src/test/resources/features/AutomationTelevision.feature" -Dcucumber.options="--tags @test" command 
+
+
 
 Report path target/cucumberHtmlReport.html
