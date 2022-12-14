@@ -1,8 +1,8 @@
-# AmazonaAutomation
+# AmazonAutomation
 Prerequisite
 1. Install JAVA and set JAVA_HOME and PATH variable 
 2. Install Maven and set MAVEN_HOME and PATH variable
-
+3. Install Google chrome version 108
 
 #######
 Linux environment
@@ -19,6 +19,10 @@ Windows & MacOS environment
 2. Go back to root folder of the project in the terminal
 3. Execute mvn clean test -Dcucumber.options="src/test/resources/features/AutomationTelevision.feature" -Dcucumber.options="--tags @test" command 
 
-
+########
+Grid Execution
+1. To execute in selenium grid open src/main/resources/cucumber.properties
+2. Set grid=true
+3. Set hub with proper selenium hub id
 
 Report path target/cucumberHtmlReport.html
