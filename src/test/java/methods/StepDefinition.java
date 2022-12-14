@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.io.FileNotFoundException;
+import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.*;
 
@@ -21,7 +22,7 @@ public class StepDefinition {
     private String mainWindow = "";
     ReusableMethods predef = new ReusableMethods();
 
-    public StepDefinition() {
+    public StepDefinition() throws MalformedURLException {
         this.driver = DriverUtil.getDefaultDriver();
     }
     @Given("^I navigate to Home page$")

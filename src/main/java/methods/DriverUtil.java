@@ -5,10 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.Browser;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
 import java.util.Collections;
 
@@ -20,7 +23,7 @@ public class DriverUtil {
     private static GlobalProperties configProperties = getConfigProperties();
 
     //Initialize proper chrome driver in WebDriver object
-    public static WebDriver getDefaultDriver() {
+    public static WebDriver getDefaultDriver() throws MalformedURLException {
         if (driver != null && ((RemoteWebDriver) driver).getSessionId() != null)
             return driver;
         driver = chooseDriver();
@@ -28,30 +31,36 @@ public class DriverUtil {
     }
 
     //Choosing appropriate chrome driver
-    private static WebDriver chooseDriver() {
-        RemoteWebDriver driver = null;
-        System.out.println("======Before driver created======");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        if (configProperties.getProperty(HEADLESS).equalsIgnoreCase("true")) {
-            chromeOptions.addArguments("--headless");
+    private static WebDriver chooseDriver() throws MalformedURLException {
+        if (configProperties.getProperty("grid").equalsIgnoreCase( "true")) {
+            String hubURL=configProperties.getProperty("hub");
+            DesiredCapabilities capabilities=new DesiredCapabilities();
+            capabilities.setBrowserName("chrome");
+            driver=new RemoteWebDriver(new URL(hubURL),capabilities);
+        } else {
+            driver = null;
+            System.out.println("======Before driver created======");
+            ChromeOptions chromeOptions = new ChromeOptions();
+            if (configProperties.getProperty(HEADLESS).equalsIgnoreCase("true")) {
+                chromeOptions.addArguments("--headless");
+            }
+            chromeOptions.addArguments("start-maximized");
+            chromeOptions.setExperimentalOption("excludeSwitches",
+                    Collections.singletonList("enable-automation"));
+            String os = System.getProperty("os.name");
+            if (os.indexOf("win") >= 0) {
+                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_WIN);
+            } else if (os.indexOf("mac") >= 0) {
+                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_MAC);
+            } else if (os.indexOf("nux") >= 0) {
+                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_LIN);
+            }
+            driver = new ChromeDriver(chromeOptions);
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+            System.out.println("########## After driver created ########");
         }
-        chromeOptions.addArguments("start-maximized");
-        chromeOptions.setExperimentalOption("excludeSwitches",
-                Collections.singletonList("enable-automation"));
-        String os = System.getProperty("os.name");
-        if (os.indexOf("win") >= 0) {
-            System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_WIN);
-        } else if (os.indexOf("mac") >= 0) {
-            System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_MAC);
-        } else if (os.indexOf("nux") >= 0) {
-            System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_LIN);
-        }
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        System.out.println("########## After driver created ########");
         return driver;
     }
-
     public static void closeDriver() {
         if (driver != null) {
             driver.quit();

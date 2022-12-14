@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class ReusableMethods {
     protected WebElement elem;
 
     protected List<WebElement> elementList=new ArrayList<>();
-    public ReusableMethods() {
+    public ReusableMethods() throws MalformedURLException {
         this.driver = DriverUtil.getDefaultDriver();
     }
 
