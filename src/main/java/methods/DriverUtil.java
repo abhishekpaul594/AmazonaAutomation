@@ -32,11 +32,16 @@ public class DriverUtil {
 
     //Choosing appropriate chrome driver
     private static WebDriver chooseDriver() throws MalformedURLException {
-        if (configProperties.getProperty("grid").equalsIgnoreCase( "true")) {
-            String hubURL=configProperties.getProperty("hub");
-            DesiredCapabilities capabilities=new DesiredCapabilities();
-            capabilities.setBrowserName("chrome");
-            driver=new RemoteWebDriver(new URL(hubURL),capabilities);
+        if (configProperties.getProperty("grid").equalsIgnoreCase("true")) {
+            System.out.println("======Before driver created======");
+            String hubURL = configProperties.getProperty("hub");
+            ChromeOptions options = new ChromeOptions();
+            if (configProperties.getProperty(HEADLESS).equalsIgnoreCase("true")) {
+                options.addArguments("--headless");
+            }
+            options.addArguments("start-maximized");
+            driver = new RemoteWebDriver(new URL(hubURL), options);
+            System.out.println("======After driver created======");
         } else {
             driver = null;
             System.out.println("======Before driver created======");
@@ -61,6 +66,7 @@ public class DriverUtil {
         }
         return driver;
     }
+
     public static void closeDriver() {
         if (driver != null) {
             driver.quit();
