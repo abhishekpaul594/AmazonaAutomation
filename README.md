@@ -26,3 +26,6 @@ Grid Execution
 3. Set hub with proper selenium hub id
 
 Report path target/cucumberHtmlReport.html
+
+*****Tested in Windows and Linux. But not tested in MacOS due to unavailability of environment. 
+*****Screenshot will be captured for failed test scenario and attach with the step in cucumberHtmlReport.html report file  
