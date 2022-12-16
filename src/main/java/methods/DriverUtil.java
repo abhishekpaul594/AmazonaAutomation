@@ -52,7 +52,7 @@ public class DriverUtil {
             chromeOptions.addArguments("start-maximized");
             chromeOptions.setExperimentalOption("excludeSwitches",
                     Collections.singletonList("enable-automation"));
-            String os = System.getProperty("os.name");
+            String os = System.getProperty("os.name").toLowerCase();
             if (os.indexOf("win") >= 0) {
                 System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_WIN);
             } else if (os.indexOf("mac") >= 0) {
