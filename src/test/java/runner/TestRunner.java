@@ -32,7 +32,6 @@ public class TestRunner extends AbstractTestNGCucumberTests {
     @AfterClass
     public static void destroy() throws MalformedURLException {
         System.out.println("After executed");
-        WebDriver driver=DriverUtil.getDefaultDriver();
         DriverUtil.closeDriver();
     }
 }
