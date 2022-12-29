@@ -1,5 +1,6 @@
 package methods;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,6 +36,7 @@ public class DriverUtil {
         if (configProperties.getProperty("grid").equalsIgnoreCase("true")) {
             System.out.println("======Before driver created======");
             String hubURL = configProperties.getProperty("hub");
+            WebDriverManager.chromedriver().setup();
             ChromeOptions options = new ChromeOptions();
             if (configProperties.getProperty(HEADLESS).equalsIgnoreCase("true")) {
                 options.addArguments("--headless");
@@ -44,6 +46,7 @@ public class DriverUtil {
             System.out.println("======After driver created======");
         } else {
             driver = null;
+            WebDriverManager.chromedriver().setup();
             System.out.println("======Before driver created======");
             ChromeOptions chromeOptions = new ChromeOptions();
             if (configProperties.getProperty(HEADLESS).equalsIgnoreCase("true")) {
@@ -53,13 +56,6 @@ public class DriverUtil {
             chromeOptions.setExperimentalOption("excludeSwitches",
                     Collections.singletonList("enable-automation"));
             String os = System.getProperty("os.name").toLowerCase();
-            if (os.indexOf("win") >= 0) {
-                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_WIN);
-            } else if (os.indexOf("mac") >= 0) {
-                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_MAC);
-            } else if (os.indexOf("nux") >= 0) {
-                System.setProperty("webdriver.chrome.driver", CHROMEDRIVER_PATH_LIN);
-            }
             driver = new ChromeDriver(chromeOptions);
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
             System.out.println("########## After driver created ########");
